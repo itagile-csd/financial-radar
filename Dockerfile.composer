@@ -1,0 +1,14 @@
+FROM php:7.1-alpine
+
+WORKDIR /tmp
+RUN curl https://raw.githubusercontent.com/composer/getcomposer.org/5fd32f776359b8714e2647ab4cd8a7bed5f3714d/web/installer -o composer-setup.php
+RUN php composer-setup.php --version=1.3.2
+RUN rm composer-setup.php
+RUN mv composer.phar /usr/local/bin/composer
+
+RUN composer global require "laravel/lumen-installer"
+ENV PATH /root/.composer/vendor/bin:$PATH
+
+# the following is needed by 'lumen new'
+RUN docker-php-ext-install zip
+
