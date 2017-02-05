@@ -1,4 +1,4 @@
-FROM fradar-base:latest
+FROM itagilede/fradar-php:latest-base
 
 COPY . .
 
