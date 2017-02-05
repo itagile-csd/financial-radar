@@ -27,6 +27,6 @@ serve:
 open:
 	open http://localhost:$(shell docker port $(container) | cut -d':' -f2)
 
-push:
+push_images:
 	docker push $(repo)
 
