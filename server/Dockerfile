@@ -1,7 +1,5 @@
-FROM php:7.1-alpine
+FROM fradar-base:latest
 
-WORKDIR /app
-COPY vendor vendor
 COPY . .
 
 EXPOSE 8000

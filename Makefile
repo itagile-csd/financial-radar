@@ -14,6 +14,9 @@ bootstrap:
 install_dependencies:
 	docker run --rm -v $(pwd)/$(component):$(composer_wd) $(composer_image) install
 
+build_base:
+	cd $(component) && docker build -t fradar-base:latest -f Dockerfile.base .
+
 build:
 	cd $(component) && docker build -t $(image) .
 
