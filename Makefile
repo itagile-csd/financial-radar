@@ -30,3 +30,7 @@ open:
 push_images:
 	docker push $(repo)
 
+.PHONY: test
+test:
+	docker-compose run test await -t 1s http://server:8000
+
