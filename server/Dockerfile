@@ -1,0 +1,9 @@
+FROM php:7.1-alpine
+
+WORKDIR /app
+COPY vendor vendor
+COPY . .
+
+EXPOSE 8000
+ENTRYPOINT ["php", "-S", "0.0.0.0:8000", "-t", "/app/public"]
+
