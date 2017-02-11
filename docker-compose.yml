@@ -6,4 +6,5 @@ services:
     build: test
     links:
      - server
+    command: /bin/sh -c exit 0
 
