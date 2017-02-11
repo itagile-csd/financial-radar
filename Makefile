@@ -63,7 +63,10 @@ test_deployed:
 test_unit:
 	$(run) -v $(pwd)/$(component):/app --entrypoint /app/vendor/bin/phpunit $(base_image) /app/tests
 
-test: test_unit test_deployed
+test_acceptance:
+	$(run) -v $(pwd)/$(component):/app --entrypoint /app/vendor/bin/behat -w /app $(base_image) $(args)
+
+test: test_unit test_acceptance test_deployed
 
 composer:
 	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine $(cmd)
