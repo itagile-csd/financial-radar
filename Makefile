@@ -18,10 +18,10 @@ install_dependencies:
 build_base:
 	cd $(component) && docker build -t $(repo):latest-base -f Dockerfile.base .
 
-build:
+build_prod:
 	cd $(component) && docker build -t $(app_image) .
 
-serve:
+serve_prod:
 	docker run --name $(container) --rm -p 8000 $(app_image)
 
 serve_dev:
