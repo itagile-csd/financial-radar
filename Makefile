@@ -31,8 +31,6 @@ open:
 # Common use cases
 ###################
 
-before_commit: build_prod test
-
 serve_most_recent_prod: pull_images server_prod
 
 

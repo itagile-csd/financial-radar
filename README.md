@@ -8,7 +8,7 @@ after pull
 * Composer dependencies changed: `make install_dependencies serve_dev`
 
 before commit
-* `make before_commit`
+* `make test`
 * changes to base configuration: bump version number in Makefile
 
 after pushing to VCS
