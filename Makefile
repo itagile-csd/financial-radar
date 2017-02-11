@@ -58,5 +58,7 @@ push_images:
 
 .PHONY: test
 test:
+	docker-compose up --build -d server
 	docker-compose run test await -t 1s http://server:8002
+	docker-compose down
 
