@@ -60,5 +60,4 @@ push_images:
 test:
 	docker-compose up --build -d
 	docker-compose run test await -t 1s http://server:8002
-	docker-compose down
 
