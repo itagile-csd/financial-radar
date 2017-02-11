@@ -56,8 +56,12 @@ pull_images:
 push_images:
 	docker push $(repo)
 
-.PHONY: test
-test:
+test_deployed:
 	docker-compose up --build -d
 	docker-compose run test await -t 1s http://server:8002
+
+test_unit:
+	$(run) -v $(pwd)/$(component):/app --entrypoint /app/vendor/bin/phpunit $(base_image) /app/tests
+
+test: test_unit test_deployed
 
