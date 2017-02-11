@@ -3,7 +3,7 @@ repo := itagilede/fradar-php
 app_image := $(repo):latest
 container := fradar
 
-base_version := 2
+base_version := 3
 base_image := $(repo):$(base_version)-base
 
 component := server
@@ -19,7 +19,7 @@ install_dependencies:
 	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine install
 
 serve_dev:
-	docker run --name $(container) --rm -p 8001 -v $(pwd)/$(component):/app $(base_image)
+	docker run --name $(container) --rm -p 8002 -v $(pwd)/$(component):/app $(base_image)
 
 # opens both prod and dev servers
 # this is Mac-specific
@@ -48,7 +48,7 @@ build_prod:
 	cd $(component) && docker build -t $(app_image) .
 
 serve_prod:
-	docker run --name $(container) --rm -p 8001 $(app_image)
+	docker run --name $(container) --rm -p 8002 $(app_image)
 
 pull_images:
 	docker pull $(repo)
@@ -58,5 +58,5 @@ push_images:
 
 .PHONY: test
 test:
-	docker-compose run test await -t 1s http://server:8001
+	docker-compose run test await -t 1s http://server:8002
 
