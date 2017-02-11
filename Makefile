@@ -18,7 +18,7 @@ run := docker run --name $(container) --rm -p 8002
 
 composer_image_wd := /app
 install_dependencies:
-	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine install
+	$(MAKE) composer cmd=install
 
 serve_dev:
 	$(run) -v $(pwd)/$(component):/app $(base_image)
@@ -65,3 +65,6 @@ test_unit:
 
 test: test_unit test_deployed
 
+composer:
+	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine $(cmd)
+	
