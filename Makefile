@@ -3,8 +3,12 @@ repo := itagilede/fradar-php
 app_image := $(repo):latest
 container := fradar
 
+base_version := 1
+base_image := $(repo):$(base_version)-base
+
 component := server
 pwd := $(shell pwd)
+
 
 ##################
 # Getting started
@@ -15,7 +19,7 @@ install_dependencies:
 	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine install
 
 serve_dev:
-	docker run --name $(container) --rm -p 8000 -v $(pwd)/$(component):/app $(repo):latest-base
+	docker run --name $(container) --rm -p 8000 -v $(pwd)/$(component):/app $(base_image)
 
 # opens both prod and dev servers
 # this is Mac-specific
@@ -28,7 +32,7 @@ open:
 ##################
 
 build_base:
-	cd $(component) && docker build -t $(repo):latest-base -f Dockerfile.base .
+	cd $(component) && docker build -t $(repo):latest-base -t $(base_image) -f Dockerfile.base .
 
 build_prod:
 	cd $(component) && docker build -t $(app_image) .
