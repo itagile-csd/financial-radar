@@ -27,18 +27,31 @@ open:
 	open http://localhost:$(shell docker port $(container) | cut -d':' -f2)
 
 
+###################
+# Common use cases
+###################
+
+before_commit: build_prod test
+
+serve_most_recent_prod: pull_images server_prod
+
+
 ##################
 # Other stuff
 ##################
 
 build_base:
 	cd $(component) && docker build -t $(repo):latest-base -t $(base_image) -f Dockerfile.base .
+	$(MAKE) build_prod
 
 build_prod:
 	cd $(component) && docker build -t $(app_image) .
 
 serve_prod:
 	docker run --name $(container) --rm -p 8001 $(app_image)
+
+pull_images:
+	docker pull $(repo)
 
 push_images:
 	docker push $(repo)
