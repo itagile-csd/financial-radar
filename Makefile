@@ -3,13 +3,13 @@ repo := itagilede/fradar-php
 app_image := $(repo):latest
 container := fradar
 
-base_version := 3
+base_version := 4
 base_image := $(repo):$(base_version)-base
 
 component := server
 pwd := $(shell pwd)
 
-run := docker run --name $(container) --rm -p 8002
+run := docker run --name $(container) --rm -p 8003
 
 
 ##################
@@ -58,7 +58,7 @@ push_images:
 
 test_deployed:
 	docker-compose up --build -d
-	docker-compose run test await -t 1s http://server:8002
+	docker-compose run test await -t 1s http://server:8003
 
 test_unit:
 	$(run) -v $(pwd)/$(component):/app --entrypoint /app/vendor/bin/phpunit $(base_image) /app/tests

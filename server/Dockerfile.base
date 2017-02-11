@@ -1,5 +1,5 @@
 FROM php:7.1-alpine
 
-EXPOSE 8002
-ENTRYPOINT ["php", "-S", "0.0.0.0:8002", "-t", "/app/public"]
+EXPOSE 8003
+ENTRYPOINT ["php", "-S", "0.0.0.0:8003", "-t", "/app/public"]
 

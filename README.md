@@ -9,7 +9,7 @@ after pull
 
 before commit
 * `make test`
-* changes to base configuration: bump version number in Makefile
+* changes to base configuration: bump version number in Makefile & server/Dockerfile
 
 after pushing to VCS
 * code or dependency changes: `make build_prod push_images`
