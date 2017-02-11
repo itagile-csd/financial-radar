@@ -25,7 +25,7 @@ serve:
 	docker run --name $(container) --rm -p 8000 $(app_image)
 
 serve_dev:
-	docker run --name $(container) --rm -p 8000 -v $(pwd)/$(component):/app $(app_image)
+	docker run --name $(container) --rm -p 8000 -v $(pwd)/$(component):/app $(repo):latest-base
 
 open:
 	open http://localhost:$(shell docker port $(container) | cut -d':' -f2)
