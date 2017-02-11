@@ -9,6 +9,8 @@ base_image := $(repo):$(base_version)-base
 component := server
 pwd := $(shell pwd)
 
+run := docker run --name $(container) --rm -p 8002
+
 
 ##################
 # Getting started
@@ -19,7 +21,7 @@ install_dependencies:
 	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine install
 
 serve_dev:
-	docker run --name $(container) --rm -p 8002 -v $(pwd)/$(component):/app $(base_image)
+	$(run) -v $(pwd)/$(component):/app $(base_image)
 
 # opens both prod and dev servers
 # this is Mac-specific
@@ -46,7 +48,7 @@ build_prod:
 	cd $(component) && docker build -t $(app_image) .
 
 serve_prod:
-	docker run --name $(container) --rm -p 8002 $(app_image)
+	$(run) $(app_image)
 
 pull_images:
 	docker pull $(repo)
