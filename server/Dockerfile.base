@@ -1,8 +1,5 @@
 FROM php:7.1-alpine
 
-WORKDIR /app
-COPY vendor vendor
-
 EXPOSE 8001
 ENTRYPOINT ["php", "-S", "0.0.0.0:8001", "-t", "/app/public"]
 
