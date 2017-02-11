@@ -41,7 +41,7 @@ serve_most_recent_prod: pull_images server_prod
 ##################
 
 build_base:
-	cd $(component) && docker build -t $(repo):latest-base -t $(base_image) -f Dockerfile.base .
+	cd $(component) && docker build -t $(base_image) -f Dockerfile.base .
 	$(MAKE) build_prod
 
 build_prod:
