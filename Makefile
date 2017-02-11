@@ -6,14 +6,26 @@ container := fradar
 component := server
 pwd := $(shell pwd)
 
-composer_image := composer/composer:1.1-alpine
-composer_wd := /app
+##################
+# Getting started
+##################
 
-bootstrap:
-	docker run --rm -v $(pwd):$(composer_wd) $(composer_image) create-project --prefer-dist laravel/lumen $(component)
-
+composer_image_wd := /app
 install_dependencies:
-	docker run --rm -v $(pwd)/$(component):$(composer_wd) $(composer_image) install
+	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine install
+
+serve_dev:
+	docker run --name $(container) --rm -p 8000 -v $(pwd)/$(component):/app $(repo):latest-base
+
+# opens both prod and dev servers
+# this is Mac-specific
+open:
+	open http://localhost:$(shell docker port $(container) | cut -d':' -f2)
+
+
+##################
+# Other stuff
+##################
 
 build_base:
 	cd $(component) && docker build -t $(repo):latest-base -f Dockerfile.base .
@@ -23,12 +35,6 @@ build_prod:
 
 serve_prod:
 	docker run --name $(container) --rm -p 8000 $(app_image)
-
-serve_dev:
-	docker run --name $(container) --rm -p 8000 -v $(pwd)/$(component):/app $(repo):latest-base
-
-open:
-	open http://localhost:$(shell docker port $(container) | cut -d':' -f2)
 
 push_images:
 	docker push $(repo)
