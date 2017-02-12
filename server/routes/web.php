@@ -16,6 +16,6 @@ $app->get('/', function () use ($app) {
 });
 
 $app->get('/assetFlows', function () {
-    $result = [];
+    $result = array(array("amount" => 123.4));
     return json_encode($result);
 });

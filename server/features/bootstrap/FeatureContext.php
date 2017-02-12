@@ -57,6 +57,8 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
 
         $actual = json_decode($this->response->getContent(), true);
 
-        assertThat($actual, is(arrayWithSize(0)));
+        $expectedFlows = array(array("amount" => 123.4));
+
+        assertThat($actual, containsInAnyOrder($expectedFlows));
     }
 }
