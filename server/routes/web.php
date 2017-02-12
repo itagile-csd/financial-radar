@@ -12,9 +12,15 @@
 */
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 $app->get('/', function () {
     return "";
+});
+
+$app->get('/foo', function () {
+    Storage::put('foo.txt', 'content');
+    //Storage::disk('local')->put('file.txt', 'Contents');
 });
 
 $app->post('/assetFlows', function (Request $request) {
