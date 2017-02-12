@@ -39,4 +39,20 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
             $this->app->version(), $this->response->getContent()
         );
     }
+
+    /**
+     * @When I ask for all asset flows
+     */
+    public function getAllAssetFlows()
+    {
+        $this->get('/assetFlows');
+    }
+
+    /**
+     * @Then I get a list of revenues and expenses
+     */
+    public function verifyRevenuesAndExpensesExist()
+    {
+        assertThat($this->response->getStatusCode(), equalTo(200));
+    }
 }
