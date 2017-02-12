@@ -33,7 +33,7 @@ open:
 # Common use cases
 ###################
 
-serve_most_recent_prod: pull_images server_prod
+serve_most_recent_prod: pull_images serve_prod
 
 
 ##################
