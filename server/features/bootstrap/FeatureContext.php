@@ -54,5 +54,9 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
     public function verifyRevenuesAndExpensesExist()
     {
         assertThat($this->response->getStatusCode(), equalTo(200));
+
+        $actual = json_decode($this->response->getContent(), true);
+
+        assertThat($actual, is(arrayWithSize(0)));
     }
 }

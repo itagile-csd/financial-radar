@@ -16,5 +16,5 @@ $app->get('/', function () use ($app) {
 });
 
 $app->get('/assetFlows', function () {
-    return "";
+    return "[]";
 });
