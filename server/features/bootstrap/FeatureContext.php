@@ -35,7 +35,13 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
      */
     public function verifyEmptyString()
     {
-        assertThat($this->response->getContent(), is(emptyString()));
+        assertThat($this->getJsonResponse(), is(nullOrEmptyString()));
+    }
+
+    function getJsonResponse()
+    {
+        $assoc = true;
+        return json_decode($this->response->getContent(), $assoc);
     }
 
     /**
@@ -52,11 +58,7 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
     public function verifyRevenuesAndExpensesExist()
     {
         assertThat($this->response->getStatusCode(), equalTo(200));
-
-        $actual = json_decode($this->response->getContent(), true);
-
         $expectedFlows = array(array("amount" => 123.4));
-
-        assertThat($actual, containsInAnyOrder($expectedFlows));
+        assertThat($this->getJsonResponse(), containsInAnyOrder($expectedFlows));
     }
 }
