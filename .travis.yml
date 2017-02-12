@@ -5,7 +5,8 @@ services:
 
 before_install:
  - docker -v
-
+ - make install_dependencies
 
 script:
  - make test
+
