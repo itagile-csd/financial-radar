@@ -11,6 +11,7 @@ script:
  - make test
 
 after_success:
+ - make build_prod
  - docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASSWORD"
  - make push_images
 
