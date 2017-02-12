@@ -31,13 +31,11 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
     }
 
     /**
-     * @Then it says hi
+     * @Then it returns the empty string
      */
-    public function verifyGreeting()
+    public function verifyEmptyString()
     {
-        $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
-        );
+        assertThat($this->response->getContent(), is(emptyString()));
     }
 
     /**
