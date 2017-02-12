@@ -16,5 +16,6 @@ $app->get('/', function () use ($app) {
 });
 
 $app->get('/assetFlows', function () {
-    return "[]";
+    $result = [];
+    return json_encode($result);
 });
