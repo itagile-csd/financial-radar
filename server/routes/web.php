@@ -17,8 +17,7 @@ $app->get('/', function () {
     return "";
 });
 
-$app->post('/assetFlows', function (Request $request) {
-});
+$app->post('/assetFlows', 'Controller@addAssetFlow');
 
 $app->get('/assetFlows', function () {
     $result = array(array("amount" => 1));
