@@ -20,8 +20,11 @@ after pushing to VCS
 
 * run latest prod version: `make serve_most_recent_prod`
 
+## VCS Conventions
 
-## Commit prefixes
+* pull with rebase: `git pull --rebase`
+
+### Commit prefixes
 
 . user value (fictitious fradar users)  
 & tooling value  
