@@ -45,7 +45,16 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
     }
 
     /**
-     * @When I ask for all asset flows
+     * @Given multiple asset flows
+     */
+    public function createAssetFlows()
+    {
+        $revenue = array('amount' => 1);
+        $this->json('POST', '/assetFlows', $revenue);
+    }
+
+    /**
+     * @When /ask for all asset flows/
      */
     public function getAllAssetFlows()
     {
@@ -53,12 +62,12 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
     }
 
     /**
-     * @Then I get a list of revenues and expenses
+     * @Then /complete list of revenues and expenses/
      */
     public function verifyRevenuesAndExpensesExist()
     {
         assertThat($this->response->getStatusCode(), equalTo(200));
-        $expectedFlows = array(array("amount" => 123.5));
+        $expectedFlows = array(array("amount" => 1));
         assertThat($this->getJsonResponse(), containsInAnyOrder($expectedFlows));
     }
 }

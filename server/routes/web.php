@@ -11,11 +11,16 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 $app->get('/', function () {
     return "";
 });
 
+$app->post('/assetFlows', function (Request $request) {
+});
+
 $app->get('/assetFlows', function () {
-    $result = array(array("amount" => 123.5));
+    $result = array(array("amount" => 1));
     return json_encode($result);
 });

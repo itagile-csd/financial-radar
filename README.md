@@ -30,3 +30,6 @@ after pushing to VCS
 & tooling value  
 ~ refactoring
 
+## References
+
+https://github.com/laravel/lumen-framework/blob/5.4/src/Testing/Concerns/MakesHttpRequests.php
