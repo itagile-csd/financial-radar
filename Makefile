@@ -61,13 +61,16 @@ test_deployed:
 	docker-compose run test await -t 1s http://server:8003
 
 test_unit:
-	$(run) -v $(pwd)/$(component):/app --entrypoint /app/vendor/bin/phpunit $(base_image) /app/tests
+	$(MAKE) run_within_image vendor_binary=phpunit args=tests
+
+run_within_image:
+	$(run) -v $(pwd)/$(component):/app -w /app --entrypoint /app/vendor/bin/$(vendor_binary) $(base_image) $(args)
 
 test_acceptance:
-	$(run) -v $(pwd)/$(component):/app --entrypoint /app/vendor/bin/behat -w /app $(base_image) $(args)
+	$(MAKE) run_within_image vendor_binary=behat
 
 test: test_unit test_acceptance test_deployed
 
 composer:
 	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine $(cmd)
-	
+
