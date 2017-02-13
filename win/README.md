@@ -4,7 +4,7 @@
 * install Docker Toolbox 1.12: https://github.com/docker/toolbox/releases/tag/v1.12.6
   * during installation select "Install Git"
 * start Docker Quickstart Terminal, it will still need to setup things
-* stay in the Docker Quickstart Termin, clone this repo
+* stay in the Docker Quickstart Terminal, clone this repo
 * in an elevated cmd:
 ```
 cd <clone_dir>/win
@@ -19,7 +19,10 @@ install_in_elevated_cmd
 make
 ```
 
+finish by configuring apps
 * make Chrome the default browser (Edge did not want to show Json)
+* set up SourceTree
+* create Docker link for Cmder
 
 
 ## Explanations for setup choices
