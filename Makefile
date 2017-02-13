@@ -23,11 +23,10 @@ install_dependencies:
 serve_dev:
 	$(run) -v $(pwd)/$(component):/app $(base_image)
 
-host := $(shell docker-machine ip)
-ifneq ($(.SHELLSTATUS), 0)
-	host ?= localhost
+host = $(shell docker-machine ip)
+ifeq ($(host),)
+	host = localhost
 endif
-
 # works for both prod and dev servers
 open:
 	http-prompt http://$(host):$(shell docker port $(container) | cut -d':' -f2)
