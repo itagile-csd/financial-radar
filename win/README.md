@@ -14,6 +14,11 @@ install_in_elevated_cmd
 
 `install_in_elevated_cmd` can be rerun as often as one wishes
 
+* in a non-elevated cmd (still in `<clone_dir>>/win`):
+```
+make
+```
+
 * make Chrome the default browser (Edge did not want to show Json)
 
 
