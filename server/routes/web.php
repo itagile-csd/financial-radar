@@ -15,6 +15,6 @@ $app->get('/', function () {
     return "";
 });
 
-$app->post('/assetFlows', 'Controller@add');
-$app->get('/assetFlows', 'Controller@get');
+$app->post('/assetFlows', 'AssetFlowsController@add');
+$app->get('/assetFlows', 'AssetFlowsController@get');
 

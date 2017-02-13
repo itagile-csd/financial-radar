@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
 
-class Controller extends BaseController
+class AssetFlowsController extends BaseController
 {
     public function add() {}
 
@@ -13,3 +13,4 @@ class Controller extends BaseController
         return json_encode($result);
     }
 }
+
