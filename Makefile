@@ -27,9 +27,10 @@ host = $(shell docker-machine ip)
 ifeq ($(host),)
 	host = localhost
 endif
+port = $(shell docker port $(container) | cut -d':' -f2)
 # works for both prod and dev servers
 open:
-	http-prompt http://$(host):$(shell docker port $(container) | cut -d':' -f2)
+	http-prompt http://$(host):$(port)
 
 
 ###################
