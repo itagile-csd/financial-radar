@@ -25,7 +25,7 @@ serve_dev:
 
 host := $(shell docker-machine ip)
 ifneq ($(.SHELLSTATUS), 0)
-	host := localhost
+	host ?= localhost
 endif
 
 # works for both prod and dev servers
