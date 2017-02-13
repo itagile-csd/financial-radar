@@ -2,21 +2,33 @@
 
 namespace App\Repositories;
 
-use Log;
 use Illuminate\Support\Facades\Storage;
 
 class AssetFlowsRepository {
     protected $flows;
 
     public function __construct() {
-        Log::info('constructed');
-        $flows = array(array("amount" => 1));
-        Storage::put('assetFlows.json', json_encode($flows));
-        $this->flows = json_decode(Storage::get('assetFlows.json'));
+        if (Storage::exists('assetFlows.json')) {
+            $this->flows = json_decode(Storage::get('assetFlows.json'));
+            return;
+        }
+        $this->flows = array();
+        Storage::put('assetFlows.json', '');
+
+    }
+
+    public function add($flow) {
+        $this->flows[] = $flow;
+        Storage::put('assetFlows.json', json_encode($this->flows));
     }
 
     public function getAll() {
         return $this->flows;
+    }
+
+    public function clear() {
+        $this->flows = array();
+        Storage::put('assetFlows.json', json_encode($this->flows));
     }
 }
 
