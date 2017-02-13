@@ -23,10 +23,13 @@ install_dependencies:
 serve_dev:
 	$(run) -v $(pwd)/$(component):/app $(base_image)
 
-# opens both prod and dev servers
+host := $(shell docker-machine ip)
+host ?= localhost
+
+# works for both prod and dev servers
 # this is Mac-specific
 open:
-	open http://localhost:$(shell docker port $(container) | cut -d':' -f2)
+	http-prompt http://localhost:$(shell docker port $(container) | cut -d':' -f2)
 
 
 ###################
