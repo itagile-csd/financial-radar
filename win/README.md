@@ -5,25 +5,29 @@
   * during installation select "Install Git"
 * start Docker Quickstart Terminal, it will still need to setup things
 * stay in the Docker Quickstart Terminal, clone this repo
-* in an elevated cmd:
+
+Now in an *elevated* cmd:
 ```
 cd <clone_dir>/win
 install_choco_in_elevated_cmd
 install_in_elevated_cmd
 ```
 
-`install_in_elevated_cmd` can be rerun as often as one wishes
+> `install_in_elevated_cmd` can be rerun as often as one wishes
 
-* in a non-elevated cmd (still in `<clone_dir>>/win`):
+This would be a good time to create a Docker tab for Cmder.
+
+Now in a non-elevated cmd, in `<clone_dir>/win`:
 ```
 make
 ```
 
-finish by configuring apps
+Finish by configuring apps
 * make Chrome the default browser (Edge did not want to show Json)
 * set up SourceTree
 * create Docker link for Cmder
-* try Getting Started
+
+Lastly try Getting Started.
 
 
 ## Explanations for setup choices
