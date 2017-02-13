@@ -23,6 +23,7 @@ finish by configuring apps
 * make Chrome the default browser (Edge did not want to show Json)
 * set up SourceTree
 * create Docker link for Cmder
+* try Getting Started
 
 
 ## Explanations for setup choices
