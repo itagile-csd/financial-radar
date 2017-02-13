@@ -23,6 +23,8 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
+$app->configure('filesystems');
+
 $app->withFacades();
 
 // $app->withEloquent();
@@ -49,6 +51,8 @@ $app->singleton(
 );
 
 $app->singleton(App\Repositories\AssetFlowsRepository::class, App\Repositories\AssetFlowsRepository::class);
+
+$app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
