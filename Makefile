@@ -24,12 +24,13 @@ serve_dev:
 	$(run) -v $(pwd)/$(component):/app $(base_image)
 
 host := $(shell docker-machine ip)
-host ?= localhost
+ifneq ($(.SHELLSTATUS), 0)
+	host := localhost
+endif
 
 # works for both prod and dev servers
-# this is Mac-specific
 open:
-	http-prompt http://localhost:$(shell docker port $(container) | cut -d':' -f2)
+	http-prompt http://$(host):$(shell docker port $(container) | cut -d':' -f2)
 
 
 ###################
