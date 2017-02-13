@@ -23,7 +23,7 @@ $app = new Laravel\Lumen\Application(
     realpath(__DIR__.'/../')
 );
 
-// $app->withFacades();
+$app->withFacades();
 
 // $app->withEloquent();
 
@@ -47,6 +47,8 @@ $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
     App\Console\Kernel::class
 );
+
+$app->singleton(App\Repositories\AssetFlowsRepository::class, App\Repositories\AssetFlowsRepository::class);
 
 /*
 |--------------------------------------------------------------------------

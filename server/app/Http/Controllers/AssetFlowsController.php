@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
+use App\Repositories\AssetFlowsRepository;
 
 class AssetFlowsController extends BaseController
 {
+    protected $repo;
+
+    public function __construct(AssetFlowsRepository $repo) {
+        $this->repo = $repo;
+    }
+
     public function add() {}
 
     public function get() {
-        $result = array(array("amount" => 1));
-        return json_encode($result);
+        return json_encode($this->repo->getAll());
     }
 }
 
