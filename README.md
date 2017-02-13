@@ -40,6 +40,7 @@ https://github.com/laravel/lumen-framework/blob/5.4/src/Testing/Concerns/MakesHt
 * install Docker Toolbox https://github.com/docker/toolbox/releases/tag/v1.12.6
 * clone repo
 * in an elevated cmd:
+
     cd <clone_dir>/win
     install_choco_in_elevated_cmd
     install_in_elevated_cmd
