@@ -38,7 +38,8 @@ https://github.com/laravel/lumen-framework/blob/5.4/src/Testing/Concerns/MakesHt
 ## Set up Windows machine for dev
 
 * install Docker Toolbox https://github.com/docker/toolbox/releases/tag/v1.12.6
-* clone repo
+* start Docker Quickstart Terminal, it will still need to setup things
+* stay in the Docker Quickstart Termin, clone this repo
 * in an elevated cmd:
 ```
 cd <clone_dir>/win
