@@ -65,13 +65,13 @@ test_smoke:
 	docker-compose run smoke_tester await -t 1s http://server:8003
 
 test_unit:
-	$(MAKE) run_within_image vendor_binary=phpunit args=tests
+	$(MAKE) run_within_image vendor_binary=phpunit args='--colors=always tests'
 
 run_within_image:
 	docker run --rm -v $(pwd)/$(component):/app -w /app --entrypoint /app/vendor/bin/$(vendor_binary) $(base_image) $(args)
 
 test_acceptance:
-	$(MAKE) run_within_image vendor_binary=behat
+	$(MAKE) run_within_image vendor_binary=behat args='--colors'
 
 test_quick: test_unit test_acceptance
 test_all: test_quick test_smoke
