@@ -30,7 +30,13 @@ after pushing to VCS
 & tooling value  
 ~ refactoring
 
+
 ## References
 
+Which facilities are available in acceptance tests?
 https://github.com/laravel/lumen-framework/blob/5.4/src/Testing/Concerns/MakesHttpRequests.php
+
+Logs are under `server/storage/logs`.
+
+The data is persisted to `server/storage/app/assetFlows.json`.
 
