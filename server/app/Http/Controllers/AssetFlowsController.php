@@ -24,6 +24,8 @@ class AssetFlowsController extends BaseController
 
     public function add(Request $request) {
         $this->repo->add($request->all());
+
+        return response(null, 201);
     }
 
     public function get() {
