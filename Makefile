@@ -9,7 +9,7 @@ base_image := $(repo):$(base_version)-base
 component := server
 pwd := $(shell pwd)
 
-run := docker run --name $(container) --rm -p 8003
+run_fradar := docker run --name $(container) --rm -p 8003
 
 
 ##################
@@ -21,7 +21,7 @@ install_dependencies:
 	$(MAKE) composer cmd=install
 
 serve_dev:
-	$(run) -v $(pwd)/$(component):/app $(base_image)
+	$(run_fradar) -v $(pwd)/$(component):/app $(base_image)
 
 host = $(shell docker-machine ip)
 ifeq ($(host),)
@@ -52,7 +52,7 @@ build_prod:
 	cd $(component) && docker build -t $(app_image) .
 
 serve_prod:
-	$(run) $(app_image)
+	$(run_fradar) $(app_image)
 
 pull_images:
 	docker pull $(repo)
@@ -68,7 +68,7 @@ test_unit:
 	$(MAKE) run_within_image vendor_binary=phpunit args=tests
 
 run_within_image:
-	$(run) -v $(pwd)/$(component):/app -w /app --entrypoint /app/vendor/bin/$(vendor_binary) $(base_image) $(args)
+	docker run --rm -v $(pwd)/$(component):/app -w /app --entrypoint /app/vendor/bin/$(vendor_binary) $(base_image) $(args)
 
 test_acceptance:
 	$(MAKE) run_within_image vendor_binary=behat
