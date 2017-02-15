@@ -73,7 +73,8 @@ run_within_image:
 test_acceptance:
 	$(MAKE) run_within_image vendor_binary=behat
 
-test: test_unit test_acceptance test_deployed
+test_quick: test_unit test_acceptance
+test_all: test_quick test_deployed
 
 composer:
 	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine $(cmd)

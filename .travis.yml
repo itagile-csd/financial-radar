@@ -8,7 +8,7 @@ before_install:
  - make install_dependencies
 
 script:
- - make test
+ - make test_all
 
 after_success:
  - make build_prod
@@ -18,3 +18,4 @@ after_success:
 cache:
   directories:
    - server/vendor
+
