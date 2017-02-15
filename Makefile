@@ -60,9 +60,9 @@ pull_images:
 push_images:
 	docker push $(repo)
 
-test_deployed:
+test_smoke:
 	docker-compose up --build -d
-	docker-compose run test await -t 1s http://server:8003
+	docker-compose run smoke_tester await -t 1s http://server:8003
 
 test_unit:
 	$(MAKE) run_within_image vendor_binary=phpunit args=tests
@@ -74,7 +74,7 @@ test_acceptance:
 	$(MAKE) run_within_image vendor_binary=behat
 
 test_quick: test_unit test_acceptance
-test_all: test_quick test_deployed
+test_all: test_quick test_smoke
 
 composer:
 	docker run --rm -v $(pwd)/$(component):$(composer_image_wd) composer/composer:1.1-alpine $(cmd)

@@ -2,8 +2,8 @@ version: '2'
 services:
   server:
     build: server
-  test:
-    build: test
+  smoke_tester:
+    build: test.smoke
     links:
      - server
     command: /bin/sh -c exit 0
