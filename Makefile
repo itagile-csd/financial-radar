@@ -23,7 +23,7 @@ install_dependencies:
 	$(MAKE) composer cmd=install
 
 serve_dev:
-	bash -c "trap 'docker stop $(container) > /dev/null && docker rm $(container) > /dev/null && echo stopped and removed $(container) automatically.' EXIT; $(run_fradar) -v $(pwd)/$(component):/app $(base_image)"
+	bash -c "trap 'echo \"Stopping and removing $(container)…\" && docker stop $(container) > /dev/null && docker rm $(container) > /dev/null && echo \"Stopped and removed $(container).\"' EXIT; $(run_fradar) -v $(pwd)/$(component):/app $(base_image)"
 
 host = $(docker_machine_active && shell docker-machine ip)
 ifeq ($(host),)
