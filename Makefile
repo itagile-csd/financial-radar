@@ -11,6 +11,8 @@ pwd := $(shell pwd)
 
 run_fradar := docker run --name $(container) --rm -p 8003
 
+docker_machine_active = $(shell docker-machine active 2> /dev/null)
+
 
 ##################
 # Getting started
@@ -23,7 +25,7 @@ install_dependencies:
 serve_dev:
 	$(run_fradar) -v $(pwd)/$(component):/app $(base_image)
 
-host = $(docker-machine active && shell docker-machine ip)
+host = $(docker_machine_active && shell docker-machine ip)
 ifeq ($(host),)
 	host = localhost
 endif
