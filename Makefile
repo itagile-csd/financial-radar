@@ -23,7 +23,7 @@ install_dependencies:
 serve_dev:
 	$(run_fradar) -v $(pwd)/$(component):/app $(base_image)
 
-host = $(shell docker-machine ip)
+host = $(docker-machine active && shell docker-machine ip)
 ifeq ($(host),)
 	host = localhost
 endif
