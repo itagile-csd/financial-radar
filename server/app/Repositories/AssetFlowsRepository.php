@@ -9,7 +9,7 @@ class AssetFlowsRepository {
 
     public function __construct() {
         if (Storage::exists('assetFlows.json')) {
-            $this->flows = json_decode(Storage::get('assetFlows.json'));
+            $this->flows = json_decode(Storage::get('assetFlows.json'), true);
             return;
         }
         $this->flows = array();
