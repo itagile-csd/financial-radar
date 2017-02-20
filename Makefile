@@ -22,11 +22,12 @@ composer_image_wd := /app
 install_dependencies:
 	$(MAKE) composer cmd=install
 
+serve_dev_command = $(run_fradar) -v $(pwd)/$(component):/app $(base_image)
 serve_dev:
 ifeq ($(docker_machine_active), 0)
-	bash -c "trap 'echo \"Stopping and removing $(container)…\" && docker stop $(container) > /dev/null && docker rm $(container) > /dev/null && echo \"Stopped and removed $(container).\"' EXIT; $(run_fradar) -v $(pwd)/$(component):/app $(base_image)"
+	bash -c "trap 'echo \"Stopping and removing $(container)…\" && docker stop $(container) > /dev/null && docker rm $(container) > /dev/null && echo \"Stopped and removed $(container).\"' EXIT; $(serve_dev_command)"
 else
-	$(run_fradar) -v $(pwd)/$(component):/app $(base_image)
+	$(serve_dev_command)
 endif
 
 host = $(docker_machine_active && shell docker-machine ip)
