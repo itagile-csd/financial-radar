@@ -11,28 +11,26 @@ class PostAssetFlowsResponseTest extends TestCase
 
     public function testSavingSingleDataset(){
         $this->json('PUT', '/assetFlows', array());
-//        $this->response->getStatusCode();
 
-        $this->json('POST', '/assetFlows', array('EmployeID' => 'AW', 'Type' => 'User', 'amount' => 42, 'Date' => time()));
-//        $this->response->getStatusCode();
+        $this->json('POST', '/assetFlows', array('EmployeeID' => 'AW', 'Type' => 'User', 'amount' => 42, 'Date' => time()));
 
         $this->json('GET', '/assetFlows');
         $content = json_decode($this->response->getContent(), true);
 
-        assertThat($content[0]['EmployeID'], is('AW'));
+        assertThat($content[0]['EmployeeID'], is('AW'));
     }
 
     public function testSavingMultipleDataset(){
         $this->json('PUT', '/assetFlows', array());
 
-        $this->json('POST', '/assetFlows', array('EmployeID' => 'AW', 'Type' => 'User', 'amount' => 42, 'Date' => time()));
-        $this->json('POST', '/assetFlows', array('EmployeID' => 'ML', 'Type' => 'User', 'amount' => 700, 'Date' => time()));
+        $this->json('POST', '/assetFlows', array('EmployeeID' => 'AW', 'Type' => 'User', 'amount' => 42, 'Date' => time()));
+        $this->json('POST', '/assetFlows', array('EmployeeID' => 'ML', 'Type' => 'User', 'amount' => 700, 'Date' => time()));
 
         $this->json('GET', '/assetFlows');
         $content = json_decode($this->response->getContent(), true);
 
         assertThat(count($content), is(2));
-        assertThat($content[0]['EmployeID'], is('AW'));
-        assertThat($content[1]['EmployeID'], is('ML'));
+        assertThat($content[0]['EmployeeID'], is('AW'));
+        assertThat($content[1]['EmployeeID'], is('ML'));
     }
 }
