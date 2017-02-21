@@ -19,4 +19,4 @@ $app->put('/assetFlows', 'AssetFlowsController@set');
 $app->post('/assetFlows', 'AssetFlowsController@add');
 $app->get('/assetFlows', 'AssetFlowsController@get');
 
-$app->get('/fin/ma/', 'FinanceEmployeeController@getAll');
+$app->get('/fin/ma/{id}', 'FinanceEmployeeController@getAllById');
