@@ -2,11 +2,8 @@
 
 class FinResponseTest extends TestCase
 {
-    /*
-
     public function testShouldReturnFinGetResponse()
     {
-        /*
         $this->json('GET', '/fin');
 
         $content = $this->response->getContent();
@@ -16,7 +13,6 @@ class FinResponseTest extends TestCase
         assertThat($this->response->getStatusCode(), equalTo(200));
 
         assertThat(isset($result['Income_Return']), is(true));
-    }*/
-
+    }
 
 }

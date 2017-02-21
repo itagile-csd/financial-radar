@@ -23,4 +23,17 @@ class FinanceEmployeeTest extends TestCase
         assertThat( 1 , count($content) );
         assertThat($content[0]['Employee'], is('MT'));
     }
+
+    public function testShouldReturnFinGetResponse()
+    {
+        $this->json('GET', '/fin');
+
+        $content = $this->response->getContent();
+
+        $result = json_decode($content, true);
+
+        assertThat($this->response->getStatusCode(), equalTo(200));
+
+        assertThat(isset($result['IncomeReturn']), is(true));
+    }
 }

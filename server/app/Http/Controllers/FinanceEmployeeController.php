@@ -26,5 +26,42 @@ class FinanceEmployeeController extends BaseController
         return response( $assetFlowsById , 200);
     }
 
+    public function get()
+    {
+        $revenue = 0;
+        $expenses = 0;
+
+        $result = $this->repo->getAll();
+
+        if (count($result) <= 0)
+        {
+            $jsonOutput['Income_Return'] = 0;
+
+            return json_encode($jsonOutput);
+        }
+
+        foreach ($result as $asset_flow) {
+            if ($asset_flow['Amount'] > 0) {
+                $revenue += $asset_flow['Amount'];
+            } else {
+                $expenses -= $asset_flow['Amount'];
+            }
+        }
+
+        $profit = $revenue - $expenses;
+
+        if ($revenue !== 0)
+        {
+            $income_return = $profit / $revenue;
+        }
+        else
+        {
+            $income_return = 0;
+        }
+
+        $jsonOutput['Income_Return'] = round($income_return, 2);
+
+        return json_encode($jsonOutput);
+    }
 }
 
