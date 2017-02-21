@@ -6,6 +6,7 @@
 after pull
 * Composer dependencies unchanged: `make serve_dev`
 * Composer dependencies changed: `make install_dependencies serve_dev`
+* test httpPrompt `make open`
 
 before commit
 * `make test_quick`
