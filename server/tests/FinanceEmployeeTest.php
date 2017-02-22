@@ -7,7 +7,7 @@ class FinanceEmployeeTest extends TestCase
     public function testShouldReturnCreatedResponse()
     {
         $this->json('GET', '/fin/ma/1');
-        assertThat($this->response->getStatusCode(), equalTo(201));
+        assertThat($this->response->getStatusCode(), equalTo(200));
     }
 
 

@@ -23,7 +23,7 @@ class FinanceEmployeeController extends BaseController
                 $assetFlowsById[] = $data;
             }
         }
-        return response( $assetFlowsById , 201);
+        return response( $assetFlowsById , 200);
     }
 
 }
