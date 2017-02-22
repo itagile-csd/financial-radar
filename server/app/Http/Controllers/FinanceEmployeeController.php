@@ -16,13 +16,13 @@ class FinanceEmployeeController extends BaseController
         $this->repo = $repo;
     }
 
-    public function getAllByEmployee($employee )
+    public function getAllByEmployee($employee, Request $request )
     {
         $assetFlows = $this->repo->getAllByEmployee($employee);
         $year = $request->get("year");
         if(isset($year)){
             $month  = $request->get("month");
-            $assetFlows = RevenueCalculator::filterRevenueByYear($assetFlowsById, $year, $month);
+            $assetFlows = RevenueCalculator::filterRevenueByYear($assetFlows, $year, $month);
         }
         return response($assetFlows  , 200);
     }

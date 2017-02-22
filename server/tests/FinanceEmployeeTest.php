@@ -39,7 +39,7 @@ class FinanceEmployeeTest extends TestCase
         $this->json('POST', '/assetFlows', array('Employee' => 'MT', 'Amount' => 22, 'Year' => "2017", 'Month' => "01"));
 
         $this->json('GET', '/fin/ma/MT?year=2017');
-        $content = $this->response->getContent();
-        assertThat($content, is(64));
+        $content = json_decode($this->response->getContent(), true);
+        assertThat($content['Income'], is(64));
     }
 }
