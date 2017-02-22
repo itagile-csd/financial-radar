@@ -6,21 +6,19 @@ namespace App;
 class RevenueCalculator
 {
 
-    public static function filterRevenueByYear(array $list, $year, $month = 0){
+    public static function filterRevenueByYear(array $list, $year, $month = null){
         $returnValue = 0;
         foreach ($list as $assetFlow){
-            $timestamp = $assetFlow->getDate();
-            $dateYear = date("Y", $timestamp);
+            $dateYear = $assetFlow['Year'];
 
-            if($dateYear == $year){
-                if($month == 0){
-                    $returnValue += $assetFlow->getAmount();
-                    continue;
+            if ($dateYear == $year)
+            {
+                if (($month === null) || ($month == $assetFlow['Month']) )
+                {
+                    $returnValue += $assetFlow['Amount'];
+
                 }
-                $dateMonth = date("m", $timestamp);
-                if($dateMonth == $month){
-                    $returnValue += $assetFlow->getAmount();
-                }
+
             }
         }
 
