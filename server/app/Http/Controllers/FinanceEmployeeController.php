@@ -19,7 +19,7 @@ class FinanceEmployeeController extends BaseController
         $assetFlows = $this->repo->getAll();
         $assetFlowsById = [];
         foreach($assetFlows as $data) {
-            if(isset($data['EmployeeID']) && $data['EmployeeID'] === $id) {
+            if(isset($data['Employee']) && $data['Employee'] === $id) {
                 $assetFlowsById[] = $data;
             }
         }

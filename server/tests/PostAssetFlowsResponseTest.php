@@ -6,7 +6,7 @@ class PostAssetFlowsResponseTest extends TestCase
     {
         parent::setUp();
         $this->json('PUT', '/assetFlows', array());
-        $this->json('POST', '/assetFlows', array('EmployeeID' => 'AW', 'Type' => 'User', 'Amount' => 42, 'Date' => time()));
+        $this->json('POST', '/assetFlows', array('Employee' => 'AW', 'Type' => 'User', 'Amount' => 42, 'Date' => time()));
     }
 
     public function testShouldReturnCreatedResponse()
@@ -19,18 +19,18 @@ class PostAssetFlowsResponseTest extends TestCase
         $this->json('GET', '/assetFlows');
         $content = json_decode($this->response->getContent(), true);
 
-        assertThat($content[0]['EmployeeID'], is('AW'));
+        assertThat($content[0]['Employee'], is('AW'));
     }
 
     public function testSavingMultipleDataset()
     {
-        $this->json('POST', '/assetFlows', array('EmployeeID' => 'ML', 'Type' => 'User', 'Amount' => 700, 'Date' => time()));
+        $this->json('POST', '/assetFlows', array('Employee' => 'ML', 'Type' => 'User', 'Amount' => 700, 'Date' => time()));
 
         $this->json('GET', '/assetFlows');
         $content = json_decode($this->response->getContent(), true);
 
         assertThat(count($content), is(2));
-        assertThat($content[0]['EmployeeID'], is('AW'));
-        assertThat($content[1]['EmployeeID'], is('ML'));
+        assertThat($content[0]['Employee'], is('AW'));
+        assertThat($content[1]['Employee'], is('ML'));
     }
 }

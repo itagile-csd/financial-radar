@@ -13,7 +13,7 @@ class AssetFlow
     /**
      * @return mixed
      */
-    public function getEmployeeId()
+    public function getEmployee()
     {
         return $this->employee_id;
     }
@@ -21,7 +21,7 @@ class AssetFlow
     /**
      * @param mixed $employee_id
      */
-    public function setEmployeeId($employee_id)
+    public function setEmployee($employee_id)
     {
         $this->employee_id = $employee_id;
     }
