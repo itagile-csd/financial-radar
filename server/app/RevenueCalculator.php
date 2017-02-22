@@ -9,17 +9,16 @@ class RevenueCalculator
     public static function filterRevenueByYear(array $list, $year, $month = 0){
         $returnValue = 0;
         foreach ($list as $assetFlow){
-            $timestamp = $assetFlow->getDate();
-            $dateYear = date("Y", $timestamp);
+            $dateYear = $assetFlow['Year'];
 
             if($dateYear == $year){
                 if($month == 0){
-                    $returnValue += $assetFlow->getAmount();
+                    $returnValue += $assetFlow['Amount'];
                     continue;
                 }
-                $dateMonth = date("m", $timestamp);
+                $dateMonth = $assetFlow['Month'];
                 if($dateMonth == $month){
-                    $returnValue += $assetFlow->getAmount();
+                    $returnValue += $assetFlow['Amount'];
                 }
             }
         }
