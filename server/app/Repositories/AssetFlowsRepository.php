@@ -26,9 +26,22 @@ class AssetFlowsRepository {
         return $this->flows;
     }
 
+    public function getAllByEmployee(String $employee)
+    {
+        $assetFlowsByEmployee = [];
+        foreach($this->flows as $data) {
+            if(isset($data['Employee']) && $data['Employee'] === $employee) {
+                $assetFlowsByEmployee[] = $data;
+            }
+        }
+        return $assetFlowsByEmployee;
+    }
+
     public function clear() {
         $this->flows = array();
         Storage::put('assetFlows.json', json_encode($this->flows));
     }
+
+
 }
 

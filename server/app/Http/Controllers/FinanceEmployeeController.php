@@ -15,15 +15,21 @@ class FinanceEmployeeController extends BaseController
         $this->repo = $repo;
     }
 
-    public function getAllById( $id ){
-        $assetFlows = $this->repo->getAll();
-        $assetFlowsById = [];
-        foreach($assetFlows as $data) {
-            if(isset($data['Employee']) && $data['Employee'] === $id) {
-                $assetFlowsById[] = $data;
-            }
+    public function getAllByEmployee($employee )
+    {
+        return response( $this->repo->getAllByEmployee($employee) , 200);
+    }
+
+    public function calculateRevenueByEmployee($employee )
+    {
+        $assetFlowsForEmployee = $this->repo->getAllByEmployee($employee);
+        $income = 0;
+        foreach($assetFlowsForEmployee as $currentAssetFlow) {
+            $income += $currentAssetFlow['Amount'];
         }
-        return response( $assetFlowsById , 200);
+
+        $jsonOutput['Income'] = json_encode($income);
+        return response($jsonOutput, 200);
     }
 
 }
