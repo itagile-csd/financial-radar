@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\RevenueCalculator;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -15,13 +16,19 @@ class FinanceEmployeeController extends BaseController
         $this->repo = $repo;
     }
 
-    public function getAllById( $id){
+    public function getAllById( $id, Request $request){
         $assetFlows = $this->repo->getAll();
         $assetFlowsById = [];
         foreach($assetFlows as $data) {
             if(isset($data['Employee']) && $data['Employee'] === $id) {
                 $assetFlowsById[] = $data;
             }
+        }
+
+        $year = $request->get("year");
+        if(isset($year)){
+            $month  = $request->get("month");
+            $assetFlowsById = RevenueCalculator::filterRevenueByYear($assetFlowsById, $year, $month);
         }
         return response( $assetFlowsById , 200);
     }
