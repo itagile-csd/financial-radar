@@ -19,4 +19,7 @@ $app->put('/assetFlows', 'AssetFlowsController@set');
 $app->post('/assetFlows', 'AssetFlowsController@add');
 $app->get('/assetFlows', 'AssetFlowsController@get');
 
+// Umsatzrendite über alle Asset-Flows
+$app->get('/fin', 'FinanceEmployeeController@get');
+$app->post('/fin', 'FinanceEmployeeController@add');
 $app->get('/fin/ma/{id}', 'FinanceEmployeeController@getAllById');

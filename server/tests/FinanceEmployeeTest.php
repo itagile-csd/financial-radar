@@ -14,8 +14,8 @@ class FinanceEmployeeTest extends TestCase
     public function testAssetFlowDataStructure() {
 
         $this->json('PUT', '/assetFlows', array());
-        $this->json('POST', '/assetFlows', array('Employee' => 'CS', 'Type' => 'User', 'amount' => 42, 'Date' => time()));
-        $this->json('POST', '/assetFlows', array('Employee' => 'MT', 'Type' => 'User', 'amount' => 42, 'Date' => time()));
+        $this->json('POST', '/assetFlows', array('Employee' => 'CS', 'Team' => 'XYZ', 'Amount' => 42, 'Year' => '2017', 'Month' => '02'));
+        $this->json('POST', '/assetFlows', array('Employee' => 'MT', 'Team' => 'ABS', 'Amount' => 42, 'Year' => '2017', 'Month' => '02'));
 
         $this->json('GET', '/fin/ma/MT');
         $content = json_decode($this->response->getContent(), true);
