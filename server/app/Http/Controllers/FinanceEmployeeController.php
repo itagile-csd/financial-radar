@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller as BaseController;
-use Illuminate\Http\Request;
 
 use App\Repositories\AssetFlowsRepository;
 
@@ -19,7 +18,7 @@ class FinanceEmployeeController extends BaseController
         $assetFlows = $this->repo->getAll();
         $assetFlowsById = [];
         foreach($assetFlows as $data) {
-            if(isset($data['EmployeeID']) && $data['EmployeeID'] === $id) {
+            if(isset($data['Employee']) && $data['Employee'] === $id) {
                 $assetFlowsById[] = $data;
             }
         }
