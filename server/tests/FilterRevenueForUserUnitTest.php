@@ -28,7 +28,10 @@ class FilterRevenueForUserUnitTest extends TestCase
         $list[] = $obj4;
 
         assertThat(\App\RevenueCalculator::filterRevenueByYear($list, "2016"), is(3));
+        assertThat(\App\RevenueCalculator::filterRevenueByYear($list, "2016", 1), is(3));
+        assertThat(\App\RevenueCalculator::filterRevenueByYear($list, "2016", 2), is(0));
         assertThat(\App\RevenueCalculator::filterRevenueByYear($list, "2017"), is(20));
+        assertThat(\App\RevenueCalculator::filterRevenueByYear($list, "2017", 2), is(5));
     }
 }
 
