@@ -13,7 +13,7 @@ class AssetFlowsRepository {
             return;
         }
         $this->flows = array();
-        //Storage::put('assetFlows.json', '');
+        Storage::put('assetFlows.json', '');
 
     }
 

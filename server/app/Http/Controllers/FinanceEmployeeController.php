@@ -35,7 +35,7 @@ class FinanceEmployeeController extends BaseController
 
         if (count($result) <= 0)
         {
-            $jsonOutput['Income_Return'] = 0;
+            $jsonOutput['IncomeReturn'] = 0;
 
             return json_encode($jsonOutput);
         }
@@ -59,7 +59,7 @@ class FinanceEmployeeController extends BaseController
             $income_return = 0;
         }
 
-        $jsonOutput['Income_Return'] = round($income_return, 2);
+        $jsonOutput['IncomeReturn'] = $income_return;
 
         return json_encode($jsonOutput);
     }
