@@ -70,5 +70,6 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
         assertThat($this->response->getStatusCode(), equalTo(200));
         $expectedFlows = array(array("amount" => 1));
         assertThat($this->getJsonResponse(), containsInAnyOrder($expectedFlows));
+        $this->json('PUT', '/assetFlows', array());
     }
 }
