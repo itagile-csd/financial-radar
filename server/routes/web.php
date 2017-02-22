@@ -23,3 +23,4 @@ $app->get('/assetFlows', 'AssetFlowsController@get');
 $app->get('/fin', 'FinanceEmployeeController@get');
 $app->post('/fin', 'FinanceEmployeeController@add');
 $app->get('/fin/ma/{id}', 'FinanceEmployeeController@getAllById');
+//$app->get('/fin/ma/{id}/{myparams}', 'FinanceEmployeeController@getAllById');

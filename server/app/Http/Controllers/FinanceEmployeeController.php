@@ -15,7 +15,7 @@ class FinanceEmployeeController extends BaseController
         $this->repo = $repo;
     }
 
-    public function getAllById( $id ){
+    public function getAllById( $id){
         $assetFlows = $this->repo->getAll();
         $assetFlowsById = [];
         foreach($assetFlows as $data) {

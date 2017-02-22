@@ -73,3 +73,4 @@ class FeatureContext extends Laravel\Lumen\Testing\TestCase implements Context
         $this->json('PUT', '/assetFlows', array());
     }
 }
+

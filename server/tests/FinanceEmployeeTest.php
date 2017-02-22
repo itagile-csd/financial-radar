@@ -24,16 +24,14 @@ class FinanceEmployeeTest extends TestCase
         assertThat($content[0]['Employee'], is('MT'));
     }
 
-    public function testShouldReturnFinGetResponse()
-    {
-        $this->json('GET', '/fin');
+    public function testFilterAssetFlowDataStructure() {
+        $this->json('PUT', '/assetFlows', array());
+        $this->json('POST', '/assetFlows', array('Employee' => 'CS', 'Amount' => 42, 'Year' => "2017", 'Month' => "02"));
+        $this->json('POST', '/assetFlows', array('Employee' => 'MT', 'Amount' => 42, 'Year' => "2017", 'Month' => "02"));
+        $this->json('POST', '/assetFlows', array('Employee' => 'MT', 'Amount' => 22, 'Year' => "2017", 'Month' => "01"));
 
+        $this->json('GET', '/fin/ma/MT?year=2017');
         $content = $this->response->getContent();
-
-        $result = json_decode($content, true);
-
-        assertThat($this->response->getStatusCode(), equalTo(200));
-
-        assertThat(isset($result['IncomeReturn']), is(true));
+        assertThat($content, is(64));
     }
 }
