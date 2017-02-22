@@ -28,9 +28,6 @@ class FinanceEmployeeController extends BaseController
 
     public function get()
     {
-        $revenue = 0;
-        $expenses = 0;
-
         $result = $this->repo->getAll();
 
         if (count($result) <= 0)
@@ -39,6 +36,9 @@ class FinanceEmployeeController extends BaseController
 
             return json_encode($jsonOutput);
         }
+
+        $revenue = 0;
+        $expenses = 0;
 
         foreach ($result as $asset_flow) {
             if ($asset_flow['Amount'] > 0) {
