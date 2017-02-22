@@ -4,7 +4,7 @@ namespace App;
 
 class AssetFlow
 {
-    protected $employee_id;
+    protected $employee;
     protected $team_id;
     protected $type;
     protected $amount;
@@ -15,15 +15,15 @@ class AssetFlow
      */
     public function getEmployee()
     {
-        return $this->employee_id;
+        return $this->employee;
     }
 
     /**
-     * @param mixed $employee_id
+     * @param mixed $employee
      */
-    public function setEmployee($employee_id)
+    public function setEmployee($employee)
     {
-        $this->employee_id = $employee_id;
+        $this->employee = $employee;
     }
 
     /**
